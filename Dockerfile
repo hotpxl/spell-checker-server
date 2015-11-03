@@ -13,4 +13,4 @@ RUN git clone git://github.com/ariya/phantomjs.git && \
     mv bin/phantomjs /spell-checker-server
 
 EXPOSE 8080
-CMD ["bin/bash"]
+CMD ["/bin/bash"]
