@@ -14,7 +14,7 @@ import os
 from selenium import webdriver
 from selenium.webdriver.support import ui
 from selenium.common import exceptions
-from nltk import metrics
+import nltk
 
 from .utils import log
 
@@ -110,7 +110,7 @@ class GoogleSpellChecker(object):
                         '/html/body/center/form/table/tbody/'
                         'tr/td[2]/span[1]/span/input'))
                     logger.debug(
-                        'Request done. Back on page {}.'.format(
+                        'Request done. Back on page: {}'.format(
                             self._driver.current_url))
 
                     # Set waiting handler for AJAX request.
@@ -123,7 +123,7 @@ class GoogleSpellChecker(object):
                     wait.until(lambda driver: driver.find_elements_by_xpath(
                         '//*[@id=\'resultStats\']'))
                     logger.debug(
-                        'Response loaded. Now on page {}.'.format(
+                        'Response loaded. Now on page: {}'.format(
                             self._driver.current_url))
                     break
                 except exceptions.TimeoutException as ste:
@@ -138,7 +138,7 @@ class GoogleSpellChecker(object):
                         raise ste
                     else:
                         logger.warn(
-                            'Encountered timeout. Retry = {}'.format(retries))
+                            'Encountered timeout. Retry {} time(s).'.format(retries))
                         naptime = self._sleep_before_retry + \
                             random.randint(0, 600)
                         logger.warn('Sleeping for {} seconds.'.format(naptime))
@@ -161,7 +161,7 @@ class GoogleSpellChecker(object):
                 logger.debug('No suggestion.')
 
             # Google messed things up
-            if self._max_edit_dist < metrics.edit_distance(suggested_text, query):
+            if self._max_edit_dist < nltk.edit_distance(suggested_text, query):
                 logger.warn('Suggested text beyond edit distance threshold'
                             'of {}. Returning original query.'.format(
                                 self._max_edit_dist))
