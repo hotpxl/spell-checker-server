@@ -14,7 +14,7 @@ import os
 from selenium import webdriver
 from selenium.webdriver.support import ui
 from selenium.common import exceptions
-from nltk.metrics import edit_distance
+from nltk import metrics
 
 from .utils import log
 
@@ -128,7 +128,7 @@ class GoogleSpellChecker(object):
                     break
                 except exceptions.TimeoutException as ste:
                     retries += 1
-                    if retries >= self._max_retries:
+                    if self._max_retries <= retries:
                         logger.error(
                             'Exceeded maximum number of {} retries.'.format(
                                 self._max_retries))
@@ -161,7 +161,7 @@ class GoogleSpellChecker(object):
                 logger.debug('No suggestion.')
 
             # Google messed things up
-            if self._max_edit_dist < edit_distance(suggested_text, query):
+            if self._max_edit_dist < metrics.edit_distance(suggested_text, query):
                 logger.warn('Suggested text beyond edit distance threshold'
                             'of {}. Returning original query.'.format(
                                 self._max_edit_dist))
