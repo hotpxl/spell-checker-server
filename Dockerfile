@@ -6,11 +6,6 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
     python python-dev python-pip
 COPY . /spell-checker-server
 RUN cd spell-checker-server && pip install -r requirements.txt
-RUN git clone git://github.com/ariya/phantomjs.git && \
-    cd phantomjs && \
-    git checkout 2.0.0 && \
-    ./build.sh  --confirm && \
-    mv bin/phantomjs /spell-checker-server
 
 EXPOSE 8080
 CMD ["/bin/bash"]
