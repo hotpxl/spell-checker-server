@@ -1,3 +1,4 @@
 Flask==0.10.1
 nltk==3.1
 selenium==2.48.0
+gunicorn==19.3.0
