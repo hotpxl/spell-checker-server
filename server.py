@@ -12,7 +12,7 @@ app.config.update(
     JSONIFY_PRETTYPRINT_REGULAR=False
 )
 
-checker = spell_checker.GoogleSpellChecker(os.path.abspath('./phantomjs'))
+checker = spell_checker.GoogleSpellChecker(os.path.abspath('./bin/phantomjs'))
 
 @app.route('/spell-check', methods=['POST'])
 def spell_check():
