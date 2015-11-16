@@ -20,7 +20,10 @@ def spell_check():
         return (flask.jsonify({'error': 'unrecognized format'}), 400)
     else:
         res = checker.correct_spelling(flask.request.json['word'])
-        return flask.jsonify({'result': res})
+        if res:
+            return flask.jsonify({'result': res})
+        else
+            return (flask.jsonify({'error': 'request error'}), 400)
 
 if __name__ == '__main__':
     app.run()
