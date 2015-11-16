@@ -23,13 +23,15 @@ logger = log.get_logger(__name__)
 
 class GoogleSpellChecker(object):
 
-    def __init__(self, exe_path, max_edit_dist=5):
+    def __init__(self, exe_path, max_edit_dist=5, timeout=10):
         # Configure spellchecker.
         self._exe_path = exe_path
         # Only return suggestions within edit distance range.
         self._max_edit_dist = max_edit_dist
         # Url to request from.
         self._url = 'http://www.google.com'
+        # Maximum wait time before timeout for retrieving result page.
+        self._timeout = timeout
         # Start driver.
         self.__start_driver()
 

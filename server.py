@@ -22,7 +22,7 @@ def spell_check():
         res = checker.correct_spelling(flask.request.json['word'])
         if res:
             return flask.jsonify({'result': res})
-        else
+        else:
             return (flask.jsonify({'error': 'request error'}), 400)
 
 if __name__ == '__main__':
