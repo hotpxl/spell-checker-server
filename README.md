@@ -21,5 +21,5 @@ docker run -d -p 8082:80 --log-opt max-file=8 --log-opt max-size=8m --name spell
 This will open an HTTP server on port 8082. Try the following for a demonstration.
 
 ```bash
-curl -H "Content-Type: application/json" -X POST -d '{"word": "helllo"}' localhost:8082/spell-check
+curl -H "Content-Type: application/json" -X POST -d '{"word": "Googel"}' localhost:8082/spell-check
 ```
