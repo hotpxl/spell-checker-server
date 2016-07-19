@@ -16,7 +16,7 @@ docker build -t spell-checker-server .
 
 ## Run
 
-``bash
+```bash
 docker run -d -p 8082:80 --log-opt max-file=8 --log-opt max-size=8m --name spell-checker-server spell-checker-server
 ```
 
