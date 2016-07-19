@@ -4,9 +4,7 @@ API providing spell checker service.
 
 ## Build
 
-[Git LFS](https://git-lfs.github.com/) is used to store binary files.
-
-Run `git lfs pull` to download the files needed.
+[PhantomJS](http://phantomjs.org/) is needed for the server. Just run ```./get-phantomjs.sh```.
 
 Run the following command to build the Docker image.
 
