@@ -8,11 +8,10 @@ import spell_checker
 
 app = flask.Flask(__name__)
 
-app.config.update(
-    JSONIFY_PRETTYPRINT_REGULAR=False
-)
+app.config.update(JSONIFY_PRETTYPRINT_REGULAR=False)
 
 checker = spell_checker.GoogleSpellChecker(os.path.abspath('./bin/phantomjs'))
+
 
 @app.route('/spell-check', methods=['POST'])
 def spell_check():
@@ -25,6 +24,6 @@ def spell_check():
         else:
             return (flask.jsonify({'error': 'request error'}), 400)
 
+
 if __name__ == '__main__':
     app.run()
-

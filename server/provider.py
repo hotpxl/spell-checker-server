@@ -6,7 +6,6 @@ import requests
 
 
 class SpellCheckerProvider(object):
-
     def __init__(self, server_addr):
         self.server_addr = server_addr
 
@@ -20,8 +19,3 @@ class SpellCheckerProvider(object):
             return result['result']
         else:
             raise ValueError('unrecognized format')
-
-
-if __name__ == '__main__':
-    a = SpellCheckerProvider('http://54.88.99.94:20002/spell-check')
-    print(a.spell_check('Helllo woorld'))
